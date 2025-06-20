@@ -1,7 +1,7 @@
 /* === import police onest regular === */
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@400&display=swap');
 
-/* Valeurs couleurs */
+/* couleurs claires */
 :root {
     --color-background: #FEFEFE;
     --color-text: #2C2C2C;
@@ -14,7 +14,7 @@
     --transition-speed: 0.3s;
 }
 
-/* Mode sombre : on redéfinit uniquement les variables */
+/* couleurs sombres */
 body.dark {
     --color-background: #121212;
     --color-text: #f0f0f0;
@@ -83,7 +83,7 @@ input[type="submit"]:hover {
     color: var(--color-background);
 }
 
-/* liens hypertexte */
+/* liens hypertextes */
 a {
     color: var(--color-link);
     text-decoration: none;
@@ -250,13 +250,13 @@ q i {
     text-align: center;
 }
 
-/* Intro */
+/* intro */
 .intro h1 {
     font-size: 2.2rem;
     margin-bottom: 0.2em;
 }
 
-/* Liste des articles stylisée */
+/* liste des articles */
 .articles-list {
     list-style: none;
     padding: 0;
@@ -282,7 +282,7 @@ body.dark .articles-list li {
 }
 
 
-/* Formulaire newsletter */
+/* newsletter (dummy, ça ne fonctionne pas) */
 form {
     margin-top: 1em;
 }

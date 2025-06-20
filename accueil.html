@@ -49,10 +49,8 @@
 
     <section>
       <h2>Liens utiles</h2>
-        <a href="helloworld.html">Hello World !</a>
-        <br>
-        <a href="https://instagram.com/dorian.osly" target="_blank">Instagram
-            <i class="fa-brands fa-instagram"></i></a>
+      <a href="helloworld.html">Hello World !</a><br>
+      <a href="https://instagram.com/dorian.osly" target="_blank" rel="noopener noreferrer">Instagram <i class="fa-brands fa-instagram"></i></a>
     </section>
 
     <section>
@@ -71,33 +69,302 @@
     </div>
   </footer>
 
-
+  <!-- Toggle Dark Mode Script -->
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.getElementById('darkmode-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById('darkmode-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const body = document.body;
 
-    // Fonction pour mettre à jour l'icône
-    function updateIcon(isDark) {
-      themeIcon.textContent = isDark ? "🌞" : "🌙";
+      function updateIcon(isDark) {
+        themeIcon.textContent = isDark ? "🌞" : "🌙";
+      }
+
+      // Appliquer le thème stocké
+      const savedTheme = localStorage.getItem('theme');
+      const isDark = savedTheme === 'dark';
+      body.classList.toggle('dark', isDark);
+      toggle.checked = isDark;
+      updateIcon(isDark);
+
+      toggle.addEventListener('change', () => {
+        const dark = toggle.checked;
+        body.classList.toggle('dark', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        updateIcon(dark);
+      });
+    });
+  </script>
+
+  <!-- Chatbot Styles -->
+  <style>
+    :root {
+      --chatbot-bg: #fff;
+      --chatbot-text: #222;
+      --chatbot-accent: #a69f94;
+      --chatbot-link: #7f7970;
+      --chatbot-hover: #59554f;
+      --transition-speed: 0.3s;
     }
 
-    // Appliquer le thème stocké
-    const savedTheme = localStorage.getItem('theme');
-    const isDark = savedTheme === 'dark';
-    body.classList.toggle('dark', isDark);
-    toggle.checked = isDark;
-    updateIcon(isDark);
+    body.dark {
+  --chatbot-bg: #1b1b1b;
+  --chatbot-text: #f0f0f0;
+  --chatbot-accent: #2c7be5;
+  --chatbot-link: #1a73e8;
+  --chatbot-hover: #155db2;
+}
 
-    // Changement de thème
-    toggle.addEventListener('change', () => {
-      const dark = toggle.checked;
-      body.classList.toggle('dark', dark);
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
-      updateIcon(dark);
+
+    #chatbot-toggle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--chatbot-accent);
+      color: var(--chatbot-bg);
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s;
+      z-index: 9999;
+      font-family: 'Onest', sans-serif;
+    }
+    #chatbot-toggle:hover {
+      background-color: var(--chatbot-hover);
+    }
+
+    #chatbot-box {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 425px;
+      min-height: 250px;
+      max-height: 650px;
+      background-color: var(--color-background);
+      color: var(--chatbot-text);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      border: 1px solid var(--chatbot-accent);
+      font-family: 'Onest', sans-serif;
+      z-index: 9999;
+    }
+
+    #chatbot-header {
+      padding: 12px;
+      background: var(--chatbot-accent);
+      color: var(--color-background);
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #chatbot-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: var(--color-background);
+    }
+
+    .input-area {
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      align-items: center;
+    }
+
+    #chatbot-input {
+      flex-grow: 1;
+      height: 50px;
+      resize: none;
+      font-size: 14px;
+      padding: 8px;
+      border: 1px solid var(--chatbot-accent);
+      border-radius: 6px;
+      outline: none;
+      box-sizing: border-box;
+      color: var(--chatbot-text);
+      background-color: var(--color-background);
+      font-family: 'Onest', sans-serif;
+    }
+
+    #chatbot-send {
+      background: var(--chatbot-link);
+      color: var(--color-background);
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 6px;
+      width: auto;
+      min-width: 70px;
+      height: 50px;
+      font-size: 13px;
+      text-align: center;
+      font-family: 'Onest', sans-serif;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      white-space: pre-wrap;
+    }
+
+    .message.user {
+      text-align: right;
+      color: var(--chatbot-link);
+    }
+
+    .message.bot {
+      text-align: left;
+      color: var(--chatbot-text);
+    }
+
+    #chatbot-box,
+    #chatbot-toggle,
+    #chatbot-header,
+    #chatbot-input,
+    #chatbot-send {
+      transition:
+        background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease,
+        border-color var(--transition-speed) ease;
+    }
+  </style>
+
+  <!-- Chatbot HTML -->
+  <button id="chatbot-toggle" aria-label="Ouvrir le chat">
+    <i class="fa-solid fa-comments"></i>
+  </button>
+
+
+  <div id="chatbot-box" role="region" aria-label="Chat avec Charly assistant">
+    <div id="chatbot-header">
+      <span>Charly – Assistant Livreo</span>
+      <button id="chatbot-new" title="Nouveau chat" style="background:none;border:none;color:inherit;cursor:pointer;">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
+
+    </div>
+    <div id="chatbot-messages" tabindex="0"></div>
+    <div class="input-area">
+      <textarea id="chatbot-input" rows="2" placeholder="Écris ton message ici..."></textarea>
+      <button id="chatbot-send">Envoyer</button>
+    </div>
+  </div>
+
+  <!-- Chatbot JS -->
+  <script>
+    const API_KEY = 'FDVBlFsxb2WRWFgFFGEvusPb9RoF1CqX'; // Remplace par ta vraie clé API
+    const ENDPOINT = 'https://api.mistral.ai/v1/chat/completions';
+
+    const systemPrompt = `Tu es Charly, assistant conversationnel pour Livreo, un site d'ecommerce de livres. Tu es amical, poli, calme, et tu parles uniquement en français.
+
+Si l'utilisateur te salue, répond simplement par un salut poli et bref, sans te présenter, sans expliquer comment tu comptes les aider ni expliquer ce que tu es.
+
+Si l'utilisateur pose une question technique, explique clairement et simplement sans trop de jargon.
+
+Ne parle jamais de politique, religion ou sujets sensibles.
+
+Si l'utilisateur te demande un conseil ou des suggestions de mangas à lire, propose lui de mangas en fonction de ses goûts`;
+
+    const chatbotToggle = document.getElementById("chatbot-toggle");
+    const chatbotBox = document.getElementById("chatbot-box");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotSend = document.getElementById("chatbot-send");
+    const chatbotNew = document.getElementById("chatbot-new");
+
+    let messages = [{ role: "system", content: systemPrompt }];
+
+    chatbotToggle.addEventListener("click", () => {
+      if (chatbotBox.style.display === "flex") {
+        chatbotBox.style.display = "none";
+      } else {
+        chatbotBox.style.display = "flex";
+        chatbotInput.focus();
+      }
     });
-  });
-</script>
+
+    chatbotNew.addEventListener("click", () => {
+      startNewChat();
+    });
+
+    chatbotSend.addEventListener("click", () => {
+      sendMessage();
+    });
+
+    chatbotInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    function appendMessage(text, sender) {
+      const div = document.createElement("div");
+      div.className = `message ${sender}`;
+      div.textContent = text;
+      chatbotMessages.appendChild(div);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function startNewChat() {
+      messages = [{ role: "system", content: systemPrompt }];
+      chatbotMessages.innerHTML = "";
+      chatbotInput.value = "";
+      chatbotInput.focus();
+    }
+
+    async function sendMessage() {
+      const userInput = chatbotInput.value.trim();
+      if (!userInput) return;
+
+      appendMessage(userInput, "user");
+      chatbotInput.value = "";
+
+      messages.push({ role: "user", content: userInput });
+      appendMessage("...", "bot");
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "mistral-tiny",
+            messages: messages,
+            temperature: 0.7
+          }),
+        });
+
+        const data = await res.json();
+        const botReply = data.choices?.[0]?.message?.content?.trim() || "Réponse vide.";
+        messages.push({ role: "assistant", content: botReply });
+
+        const dots = chatbotMessages.querySelector(".message.bot:last-child");
+        if (dots) dots.remove();
+
+        appendMessage(botReply, "bot");
+      } catch (err) {
+        const dots = chatbotMessages.querySelector(".message.bot:last-child");
+        if (dots) dots.remove();
+
+        appendMessage("Désolé, une erreur est survenue. Veuillez réessayer plus tard.", "bot");
+        console.error(err);
+      }
+    }
+  </script>
 </body>
 </html>
