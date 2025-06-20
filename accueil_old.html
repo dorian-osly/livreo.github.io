@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Livreo : Accueil</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Livreo Logo" width="50" height="50">
+    <h2>Livreo</h2>
+    <nav>
+      <ul>
+        <li><a href="accueil.html">Accueil</a></li>
+        <li><a href="connexion.html">Connexion</a></li>
+        <li><a href="apropos.html">A propos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h1>Bienvenue sur Livreo</h1>
+      <p class="secondary-text">La boutique en ligne minimaliste et efficace pour vos achats de livres en ligne.</p>
+      <p><strong>Découvrez nos articles en vente dès aujourd'hui !</strong></p>
+    </section>
+
+    <section>
+      <h2>Articles disponibles</h2>
+      <ul class="articles-list">
+        <li><a href="article-1.html">Bocchi The Rock - Tome 1</a></li>
+        <li><a href="article-2.html">Bocchi The Rock - Tome 2</a></li>
+        <li><a href="article-3.html">Bocchi The Rock - Tome 3</a></li>
+        <li><a href="article-4.html">Bocchi The Rock - Tome 4</a></li>
+        <li><a href="article-5.html">Bocchi The Rock - Tome 5</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Avis de nos clients</h2>
+      <q>J'achète tous mes produits sur cette boutique depuis quelques mois, et j'avoue que je suis impressionné par la qualité du service et des produits reçus. <i>Pierre</i>.</q>
+      <q>Je suis ravie de recevoir des articles d'aussi belle qualité à chaque achat ! <i>Catherine</i>.</q>
+    </section>
+
+    <section>
+      <h2>Liens utiles</h2>
+        <a href="helloworld.html">Hello World !</a>
+        <br>
+        <a href="https://instagram.com/dorian.osly" target="_blank">Instagram
+            <i class="fa-brands fa-instagram"></i></a>
+    </section>
+
+    <section>
+      <h2>Abonnez-vous à notre newsletter</h2>
+      <form>
+        <input type="email" placeholder="Votre email" required>
+        <input type="submit" value="S'abonner">
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <h2>Ce site a été fait dans le cadre de l'ISEGCOM Code Camp !</h2>
+    <iframe src="https://www.youtube.com/watch?v=TgGto2RgDeQ" frameborder="0" allowfullscreen></iframe>
+  </footer>
+
+  <script>
+  const toggle = document.getElementById('darkmode-toggle');
+  const body = document.body;
+
+  toggle.addEventListener('change', () => {
+    body.classList.toggle('dark', toggle.checked);
+    localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
+  });
+
+  // Appliquer le thème enregistré
+  if (localStorage.getItem('theme') === 'dark') {
+    toggle.checked = true;
+    body.classList.add('dark');
+  }
+</script>
+
+
+</body>
+</html>

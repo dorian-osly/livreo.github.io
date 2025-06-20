@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Livreo : Bocchi The Rock - Tome 3</title>
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="theme-switch">
+      <input type="checkbox" id="darkmode-toggle">
+      <span id="theme-icon">🌙</span>
+    </div>
+    <img src="logo.png" alt="Livreo Logo" width="50" height="50">
+    <h2>Livreo</h2>
+    <nav>
+      <ul>
+        <li><a href="accueil.html">Accueil</a></li>
+        <li><a href="connexion.html">Connexion</a></li>
+        <li><a href="apropos.html">A propos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h1>Bocchi The Rock - Tome 3</h1>
+      <img src="assets/bocchi_the_rock_3.jpg" alt="Image de l'article" width="400" height="567"
+           style="border-radius: var(--radius); box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3><b>Résumé</b></h3>
+      <p><b>T'as du mal à parler aux gens ? Alors fais du rock !!!</b><br>
+        <b>Le plus hype des mangas de musique du moment, pour toutes les personnes solitaires !!!</b><br><br>
+        Hitori Gotô, alias "Bocchi", est une jeune fille solitaire qui adore la guitare.<br>
+        Elle se contentait d'en jouer seule chez elle jusqu'à ce qu'une succession d'événements
+        la fasse rencontrer Nijika Ijichi, qui l'invite dans son groupe de rock, "Les Attaches".<br>
+        Mais Hitori pourra-t-elle vraiment se débrouiller dans un groupe,
+        elle qui n'a jamais osé jouer devant les autres jusqu'à présent ?!
+      </p>
+      <p><strong>Prix : 7.95€</strong></p>
+      <button>Ajouter au panier</button>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <h2>Ce site a été fait dans le cadre de l'ISEGCOM Code Camp</h2>
+      <p>
+        <a href="https://instagram.com/dorian.osly" target="_blank">
+          <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+      </p>
+      <iframe src="https://www.youtube.com/embed/TgGto2RgDeQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById('darkmode-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const body = document.body;
+
+      function updateIcon(isDark) {
+        themeIcon.textContent = isDark ? "🌞" : "🌙";
+      }
+
+      const savedTheme = localStorage.getItem('theme');
+      const isDark = savedTheme === 'dark';
+      body.classList.toggle('dark', isDark);
+      toggle.checked = isDark;
+      updateIcon(isDark);
+
+      toggle.addEventListener('change', () => {
+        const dark = toggle.checked;
+        body.classList.toggle('dark', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+        updateIcon(dark);
+      });
+    });
+  </script>
+</body>
+</html>
