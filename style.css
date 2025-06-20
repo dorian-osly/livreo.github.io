@@ -132,8 +132,9 @@ header h2 {
 /* thème switch */
 .theme-switch {
     position: absolute;
-    top: 10px;
+    top: 50%;
     left: 10px;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     gap: 6px;
